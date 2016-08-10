@@ -1,0 +1,27 @@
+Сначала немного теории. И так, основываясь на определение взятом с Wikipedia.
+JSON — это текстовый формат обмена данными, основанный на JavaScript и обычно используемый именно с этим языком. Как и многие другие текстовые форматы, JSON легко читается людьми.
+
+Так как лично я являюсь идолопоклонником языка Ruby и в частности фрэймворка Ruby on Rails, то пример серверной части буду описывать именно на нем. Хотя, принцип во всех языках одинаковый, я думаю любители других языков без проблем разберутся.
+
+На серверной части пишем, что то вроде:
+def MyController < ApplicationController
+  def give_me_json
+    data = Model.find(params[:id])
+    # нужно, что бы тип контента был text/plain
+    response.headers['Content-type'] = "text/plain; charset=utf-8"
+    render :text => data.to_json
+  end
+end
+
+На клиенте выполняем JavaScript (внимание, не забудьте подключить библиотеку prototype):
+new Ajax.Request('/MyController/give_me_json', {
+   asynchronous:true, evalScripts:true, 
+   onComplete:function(request) {
+       var x = eval('(' + request.responseText + ')'); 
+       alert(var_dump(x));
+   }, 
+})
+
+Или можно сделать на Ruby on Rails так:
+<%= remote_function(:complete => "var x = eval('(' + request.responseText + ')'); alert(var_dump(x));", 
+:url => { :action => 'give_me_json', :id => link.id }) %>
