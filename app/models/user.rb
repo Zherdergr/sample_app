@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :validatable
+
+  #, :registerable,
+  #       :recoverable, :rememberable, :trackable, :validatable
 
 
    #acts_as_token_authenticatable
@@ -26,5 +28,5 @@ class User < ActiveRecord::Base
       break token unless User.where(authentication_token: token).first
     end
   end
-   has_secure_password  
+ #  has_secure_password  
 end

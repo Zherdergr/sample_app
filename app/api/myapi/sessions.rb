@@ -7,19 +7,17 @@ class Myapi::Sessions < Grape::API
   resource :sessions do
 
    desc "Authenticate user and return user object / access token"
-  get :hh do
-       
-      { hello: 'world' }
-     end
+   
    params do
      requires :email, type: String, desc: "User email"
      requires :password, type: String, desc: "User Password"
+
    end
 
    #post do
    get '/hhh' do
-     email = '123@yandex.ru' #params[:email]
-     password = '12345678' #params[:password]
+     email = params[:email] #'123@yandex.ru' 
+     password =  params[:password] #'12345678' 
 
      if email.nil? or password.nil?
        error!({error_code: 404, error_message: "Invalid Email or Password."},401)
@@ -32,8 +30,8 @@ class Myapi::Sessions < Grape::API
        return
      end
 
-#     if !user.valid_password?(password)
-     if !User.where(email: email.downcase).first
+     if !user.valid_password?(password)
+#     if !User.where(email: email.downcase).first
        error!({error_code: 404, error_message: "Invalidv Password."},401)
        return
      else

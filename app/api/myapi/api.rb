@@ -28,14 +28,10 @@
 
 
 	 resource :hello do
-      desc 'Return a public timeline.'
-        get :hh do
-      # return User.to_json
-      #{@user.as_json}
-       {:success=>true, :email=>@user.email, :name=>@user.name}
-     # { hello: 'world' }
-   
-     end
+      desc 'Return a autorized user'
+        get do
+       {:success=>true, :email=>@user.email, :name=>@user.name}.to_json
+       end
     end
  
     

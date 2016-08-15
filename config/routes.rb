@@ -17,7 +17,13 @@ SampleApp::Application.routes.draw do
   #match '/hello', to 'MyApi#hello' via 'get'
   mount Myapi::API => '/'
    mount Myapi::Sessions =>'/s' 
+   mount Myapi::Registrations => '/r'
+
   
+
+
+  #match '/signup',  to: 'registrations#create',            via: 'get'
+
  # mount  MyApi::hello => '/'  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
