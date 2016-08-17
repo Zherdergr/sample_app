@@ -30,7 +30,7 @@
 	 resource :hello do
       desc 'Return a autorized user'
         get do
-       {:success=>true, :email=>@user.email, :name=>@user.name}.to_json
+       {:status=>"ok", :email=>@user.email, :name=>@user.name}
        end
     end
  

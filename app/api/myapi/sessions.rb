@@ -37,7 +37,7 @@ class Myapi::Sessions < Grape::API
      else
        user.ensure_authentication_token
        user.save
-       {status: 'ok', token: user.authentication_token}.to_json
+       {status: 'ok', token: user.authentication_token}
      end
    end
 
