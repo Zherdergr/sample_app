@@ -25,7 +25,7 @@ version 'v1', using: :header, vendor: 'myapi'
     if user.save
       
 #    render(json: "fdsfdsfd" ) 
-     {status: 'ok', token: user.authentication_token}.to_json
+     {status: 'ok', token: user.authentication_token}
 #      render json: user.as_json(auth_token: user.authentication_token, email: user.email), status: :created
       
     else
